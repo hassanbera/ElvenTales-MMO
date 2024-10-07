@@ -8,5 +8,9 @@
 
 		<p><strong>Email:</strong>@Model.Email</p>
 		<p><strong>Username:</strong>@Model.Username</p>
+		<!-- Logout Button -->
+		<form asp-action="Logout" asp-controller="Login" method="post">
+			<button type="submit" class="btn btn-danger">Logout</button>
+		</form>
 		</div>
 </div>

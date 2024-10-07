@@ -12,8 +12,16 @@ namespace ElvenTales.Controllers
         {
             _context = context;
         }
-        //Display the login page
-        [HttpGet]
+		public IActionResult Logout()
+		{
+			// Clear user session or tempdata
+			TempData.Clear();
+			// If you're using session, you would also clear the session
+			/*HttpContext.Session.Clear();*/
+			return RedirectToAction("Index", "Login");
+		}
+		//Display the login page
+		[HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -32,10 +40,12 @@ namespace ElvenTales.Controllers
 				TempData["Message"] = "Login Successful!";
                 return RedirectToAction("Index", "Profile"); // Redirect to the profile page
             }
+			
 
 
-            // If login fails, show error
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+
+			// If login fails, show error
+			ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View();
 
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ElvenTales")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4bd8fd7ab49e88b9a5f49cec2cf83c5544bfda36")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3517ceb919197f2c4b5214c8f4ac7dac8620ce3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ElvenTales")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ElvenTales")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
