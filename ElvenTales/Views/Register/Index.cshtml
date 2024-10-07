@@ -1,0 +1,27 @@
+﻿@model ElvenTales.Models.User
+<!--This is the registration form that allows the user to input their informaiton-->
+
+<form asp-action="Index" method="post">
+
+<!--Username Field-->
+<div>
+	<label>Username</label>
+	<input asp-for="Username" class="form-control" />
+</div>
+
+<!--Email Field-->
+<div>
+	<label>Email</label>
+	<input asp-for="Email" class="form-control" />
+</div>
+
+<!--Password Field-->
+<div>
+	<label>Password</label>
+	<input asp-for="PasswordHash" type="password" class="form-control" />
+</div>
+
+<!--Sumbit Button-->
+<button type="submit">Register</button>
+
+</form>
