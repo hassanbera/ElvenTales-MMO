@@ -1,16 +1,30 @@
 ﻿@model ElvenTales.Models.User
 
-<h2>Profile</h2>
+<h2>@Model.Username's Profile</h2>
 
 <div class="card">
-	<div class="card-body">
-		<h3 class="card-title">@Model.Username's Profile</h3>
-
-		<p><strong>Email:</strong>@Model.Email</p>
-		<p><strong>Username:</strong>@Model.Username</p>
-		<!-- Logout Button -->
-		<form asp-action="Logout" asp-controller="Login" method="post">
-			<button type="submit" class="btn btn-danger">Logout</button>
-		</form>
-		</div>
+    <div class="card-body">
+        <h3 class="card-title">Profile Information</h3>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Username:</strong> @Model.Username</p>
+    </div>
 </div>
+
+<h3>Your Characters</h3>
+@if (Model.Characters.Count == 0)
+{
+    <p>You have no characters yet.</p>
+}
+else
+{
+    <ul>
+        @foreach (var character in Model.Characters)
+        {
+            <li>
+                <h4>@character.CharName (Level: @character.Level, Class: @character.Class)</h4>
+                <p><strong>Honour:</strong> @character.Honour</p>
+                <p><strong>Ranking:</strong> @character.Ranking</p>
+            </li>
+        }
+    </ul>
+}

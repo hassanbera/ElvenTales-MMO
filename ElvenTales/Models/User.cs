@@ -7,5 +7,7 @@
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public List<Character> Characters { get; set; }= new List<Character>();
     }
 }

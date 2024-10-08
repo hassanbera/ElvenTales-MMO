@@ -1,0 +1,20 @@
+﻿@model ElvenTales.Models.User
+<h2>Edit Profile</h2>
+
+<form asp-action="Edit" method="post">
+	<input type="hidden" asp-for="Id" />  <!-- Hidden field for user ID, so we know which user we're updating -->
+<!--Field for editinh the username-->
+<div class="form-group">
+	<label>Username</label>
+	<input asp-for="Username" class="form-control" /> <!--Binds to the Username-->
+		<a asp-action="Edit" class="btn btn-primary">Edit Profile</a>
+</div>
+<!--Field for editing the email-->
+<div class="form-group">
+	<label>Email</label>
+	<input asp-for="Email" class="form-control" /> <!--Binds to the Email property of the User model-->
+</div>
+<!--Sumbit button to save the changes-->
+<button type="sumbit" class="btn btn-primary">Save Changes</button>
+
+</form>
