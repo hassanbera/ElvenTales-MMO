@@ -36,14 +36,16 @@ namespace ElvenTales.Controllers
             if (user != null && BCrypt.Net.BCrypt.Verify(password, user.PasswordHash))
             {
 				// cookie and session place
-				TempData["Username"] = user.Username;  // Store the username in TempData for the profile page
+				/*TempData["Username"] = user.Username; */// Store the username in TempData for the profile page
+
+                //Store the username in Session
+                HttpContext.Session.SetString("Username", user.Username);
+
 				TempData["Message"] = "Login Successful!";
-                return RedirectToAction("Index", "Profile"); // Redirect to the profile page
+
+				return RedirectToAction("Index", "Profile"); // Redirect to the profile page
             }
 			
-
-
-
 			// If login fails, show error
 			ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View();

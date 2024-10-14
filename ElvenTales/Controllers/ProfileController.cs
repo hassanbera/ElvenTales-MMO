@@ -2,6 +2,7 @@
 using ElvenTales.Data;
 using System.Linq;
 using ElvenTales.Models;
+using Microsoft.EntityFrameworkCore;
 namespace ElvenTales.Controllers
 {
 	public class ProfileController : Controller
@@ -15,34 +16,45 @@ namespace ElvenTales.Controllers
 		public IActionResult Index()
 		{
 			//Assuming user data is stored in TempData or Session (adjust this part depending on how you manage user authentication)
-			var username = TempData["Username"]?.ToString();
+			//var username = TempData["Username"]?.ToString();
+			var username = HttpContext.Session.GetString("Username");
 			if (string.IsNullOrWhiteSpace(username))
 			{
 
 				return RedirectToAction("Index", "Login"); // Redirect to login if user is not logged in
 			}
 			// Get user data from the database
-			var user= _context.Users.FirstOrDefault(u=> u.Username == username);
+			var user = _context.Users
+		.Include(u => u.Characters)  // Include characters associated with the user
+		.FirstOrDefault(u => u.Username == username);
+
 
 			if (user == null) {
 				return RedirectToAction("Index", "Login"); // If user is not found, redirect to login 
 		}
 			return View(user);  // Pass user object to the Profile View
 		}
+
+
 		public IActionResult Edit()
 		{
 			// Retrieve the logged-in user's username from TempData or Session(you could use either)
-			var username= TempData["username"]?.ToString(); // This line is assuming TempData holds the username
+			//var username= TempData["Username"]?.ToString(); // This line is assuming TempData holds the username
+
+			// Retrieve the username from session
+			var username = HttpContext.Session.GetString("Username");
+
 			// If no username is found in TempData, redirect the user to the Login page
 			if(string.IsNullOrEmpty(username)) {
-				return RedirectToAction("Index", "Login"); // Redirect to login if not logged in
+				return RedirectToAction("Index","Login"); // Redirect to login if not logged in
 		}
 			// Look up the user in the database using the retrieved username 
 			var user=_context.Users.FirstOrDefault(u=>u.Username == username);
 			//If the user is not found in the database, redirect to login again
 			if(user == null) {
-				return RedirectToAction("Index", "Login");
-	}
+				return RedirectToAction("Index","Login");
+			}
+
 			// If the user is found, return the Edit view, passing the user object to the view
 			return View(user);
 

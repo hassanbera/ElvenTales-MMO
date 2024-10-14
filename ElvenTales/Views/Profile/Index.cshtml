@@ -7,6 +7,7 @@
         <h3 class="card-title">Profile Information</h3>
         <p><strong>Email:</strong> @Model.Email</p>
         <p><strong>Username:</strong> @Model.Username</p>
+        <a asp-action="Edit" class="btn btn-primary">Edit</a>
     </div>
 </div>
 
@@ -14,6 +15,7 @@
 @if (Model.Characters.Count == 0)
 {
     <p>You have no characters yet.</p>
+    <a asp-action="Create" asp-controller="Character" class="btn btn-success">Create Character</a>
 }
 else
 {
@@ -24,6 +26,8 @@ else
                 <h4>@character.CharName (Level: @character.Level, Class: @character.Class)</h4>
                 <p><strong>Honour:</strong> @character.Honour</p>
                 <p><strong>Ranking:</strong> @character.Ranking</p>
+                <a asp-action="Edit" asp-controller="Character" asp-route-id="@character.Id"
+                class="btn btn-primary">Edit</a>
             </li>
         }
     </ul>
