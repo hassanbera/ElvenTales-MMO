@@ -58,9 +58,21 @@ namespace ElvenTales.Controllers
 			return View();
 		}
 
+
+
 		// Handle the form submission for editing character
 		[HttpPost]
 		public IActionResult Edit(Character updatedCharacter) {
+			if (!ModelState.IsValid)
+			{
+				// Logging the validation errors
+				foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+					
+					Console.WriteLine(error.ErrorMessage);
+
+				return View(updatedCharacter);
+			}
+
 			var character = _context.Characters.FirstOrDefault(c=> c.Id== updatedCharacter.Id);
 			if (character != null)
 			{
@@ -77,3 +89,4 @@ namespace ElvenTales.Controllers
 
 }
 }
+

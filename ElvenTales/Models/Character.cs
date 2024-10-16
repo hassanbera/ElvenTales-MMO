@@ -9,6 +9,6 @@
 		public int Honour {  get; set; }
 		public int Ranking {  get; set; }
 		public int UserId {  get; set; } // Foreign key to the user table
-		public User user { get; set; } // Navigation property to user
+		public User? User { get; set; }  // Navigation property to user
 	}
 }
